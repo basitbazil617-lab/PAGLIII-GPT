@@ -1,0 +1,6 @@
+{
+  "name": "Paglii GPT",
+  "description": "Friendly multilingual AI assistant with vision photo Q&A, homework solver, voice I/O, and AI productivity tools by Sahib.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

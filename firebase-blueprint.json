@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated user profile and assistant preferences.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID of the user." },
+        "displayName": { "type": "string", "description": "User display name." },
+        "email": { "type": "string", "description": "User email address." },
+        "preferredLanguage": {
+          "type": "string",
+          "enum": ["English", "Hindi", "Urdu", "Hinglish"],
+          "description": "Preferred AI assistant response language."
+        },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation server timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update server timestamp." }
+      },
+      "required": ["userId", "displayName", "preferredLanguage", "createdAt", "updatedAt"]
+    },
+    "ChatSession": {
+      "title": "ChatSession",
+      "description": "A saved AI conversation thread owned by a user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase Auth UID." },
+        "title": { "type": "string", "description": "Short summary title of the chat." },
+        "category": {
+          "type": "string",
+          "enum": ["chat", "homework", "vision", "tools"],
+          "description": "Feature mode that originated the conversation."
+        },
+        "lastMessagePreview": { "type": "string", "description": "Preview of the latest message." },
+        "messageCount": { "type": "integer", "description": "Total messages in this chat session." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation server timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update server timestamp." }
+      },
+      "required": ["userId", "title", "category", "lastMessagePreview", "messageCount", "createdAt", "updatedAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "An individual message inside a user's chat session.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase Auth UID." },
+        "role": {
+          "type": "string",
+          "enum": ["user", "model"],
+          "description": "Message sender role."
+        },
+        "text": { "type": "string", "description": "Message text content." },
+        "hasImage": { "type": "boolean", "description": "Whether an image attachment accompanied the prompt." },
+        "toolTag": { "type": "string", "description": "Optional homework or AI tool label." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation server timestamp." }
+      },
+      "required": ["userId", "role", "text", "hasImage", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private user profile and language preferences."
+    },
+    "/users/{userId}/chats/{chatId}": {
+      "schema": { "$ref": "#/entities/ChatSession" },
+      "description": "User's saved chat conversations."
+    },
+    "/users/{userId}/chats/{chatId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Messages belonging to a specific user chat session."
+    }
+  }
+}

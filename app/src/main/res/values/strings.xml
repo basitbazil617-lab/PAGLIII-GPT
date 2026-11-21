@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Paglii GPT</string>
+    <string name="tagline">YOUR FRIENDLY AI ASSISTANT ❤️</string>
+    <string name="developer_credit">Developed by SAHIB</string>
+    <string name="welcome_subtitle">Multilingual AI conversations in Hindi, Urdu, English &amp; Hinglish — with Photo Vision, Homework Solver, Voice I/O, and Creator Tools.</string>
+    <string name="auth_google_cta">Continue with Google</string>
+    <string name="nav_chat">Chat</string>
+    <string name="nav_vision">Photo AI</string>
+    <string name="nav_homework">Homework</string>
+    <string name="nav_tools">Tools</string>
+    <string name="nav_history">History</string>
+    <string name="error_no_network">No internet connection. Please check your Wi-Fi or mobile data and try again.</string>
+    <string name="error_timeout">Response timed out. Please try again with a shorter prompt or check your network.</string>
+</resources>
